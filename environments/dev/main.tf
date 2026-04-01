@@ -1,3 +1,17 @@
+terraform {
+  backend "s3" {
+    bucket         = "terraform-state-project2-srujana"
+    key            = "dev/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-lock"
+    encrypt        = true
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+
 # Add a provider block to specify the AWS provider and region
 provider "aws" {
     region = "us-east-1"
