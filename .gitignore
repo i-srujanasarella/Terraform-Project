@@ -1,0 +1,15 @@
+# Terraform files to ignore
+    .terraform/
+    .terraform.lock.hcl
+    terraform.tfstate
+    terraform.tfstate.backup
+    *.tfvars
+    *.tfvars.json
+
+# SSH Keys - NEVER commit these
+    *.pem
+    *.key
+
+# Credentials
+    .env
+    credentials
