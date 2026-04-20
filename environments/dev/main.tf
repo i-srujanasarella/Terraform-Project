@@ -10,7 +10,7 @@ terraform {
 
 # Add a provider block to specify the AWS provider and region
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 
 # 1. Create vpc
@@ -110,11 +110,11 @@ resource "aws_eip" "dev_eip" {
 
 # 9. Create Ubuntu server and install/enable Apache web server
 resource "aws_instance" "dev_web_server_instance" {
-  ami               = "ami-0ec10929233384c7f"
-  instance_type     = "t3.micro"
-  availability_zone = "us-east-1a"
-  key_name          = "main-key"
-  subnet_id         = aws_subnet.dev_subnet.id
+  ami                    = "ami-0ec10929233384c7f"
+  instance_type          = "t3.micro"
+  availability_zone      = "us-east-1a"
+  key_name               = "main-key"
+  subnet_id              = aws_subnet.dev_subnet.id
   vpc_security_group_ids = [aws_security_group.dev_security_group.id]
 
   user_data = <<-EOF
