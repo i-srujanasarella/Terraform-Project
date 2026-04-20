@@ -8,7 +8,7 @@ terraform {
   }
 }
 
-# Add a provider block to specify the AWS provider and region
+# Add a provider block to specify the AWS provider and region us-east-1
 provider "aws" {
   region = "us-east-1"
 }
@@ -16,6 +16,11 @@ provider "aws" {
 # 1. Create vpc
 resource "aws_vpc" "dev_vpc" {
   cidr_block = "10.0.0.0/16"
+
+  
+  tags = {
+    Name = "Dev_VPC"
+  }
 }
 
 # 2. Create internet gateway
