@@ -19,6 +19,7 @@ jobs:
   terraform-dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
+    environment: dev  
     if: github.ref == 'refs/heads/dev' || (github.event_name == 'pull_request' && github.base_ref == 'dev')
 
     defaults:
@@ -58,6 +59,7 @@ jobs:
   terraform-staging:
     name: Terraform Staging
     runs-on: ubuntu-latest
+    environment: staging  
     if: github.ref == 'refs/heads/staging' || (github.event_name == 'pull_request' && github.base_ref == 'staging')
 
     defaults:
@@ -97,6 +99,7 @@ jobs:
   terraform-prod:
     name: Terraform Prod
     runs-on: ubuntu-latest
+    environment: prod
     if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.base_ref == 'main')
 
     defaults:
