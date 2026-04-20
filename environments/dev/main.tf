@@ -8,10 +8,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
-}
-
 # Add a provider block to specify the AWS provider and region
 provider "aws" {
     region = "us-east-1"
