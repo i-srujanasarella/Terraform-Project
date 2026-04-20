@@ -4,13 +4,9 @@ on:
   push:
     branches:
       - dev
-      - staging
-      - main        # main = prod
   pull_request:
     branches:
       - dev
-      - staging
-      - main
 
 env:
   AWS_REGION: us-east-1
@@ -19,8 +15,7 @@ jobs:
   terraform-dev:
     name: Terraform Dev
     runs-on: ubuntu-latest
-    environment: dev  
-    if: github.ref == 'refs/heads/dev' || (github.event_name == 'pull_request' && github.base_ref == 'dev')
+    environment: dev
 
     defaults:
       run:
@@ -59,8 +54,8 @@ jobs:
   terraform-staging:
     name: Terraform Staging
     runs-on: ubuntu-latest
-    environment: staging  
-    if: github.ref == 'refs/heads/staging' || (github.event_name == 'pull_request' && github.base_ref == 'staging')
+    environment: staging
+    needs: terraform-dev        # only runs if dev succeeds
 
     defaults:
       run:
@@ -99,8 +94,8 @@ jobs:
   terraform-prod:
     name: Terraform Prod
     runs-on: ubuntu-latest
-    environment: prod
-    if: github.ref == 'refs/heads/main' || (github.event_name == 'pull_request' && github.base_ref == 'main')
+    environment: prod           # prod environment has approval gate
+    needs: terraform-staging    # only runs if staging succeeds
 
     defaults:
       run:
